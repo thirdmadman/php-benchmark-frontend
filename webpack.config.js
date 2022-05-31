@@ -29,7 +29,7 @@ module.exports = {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -43,7 +43,7 @@ module.exports = {
       ],
     }),
     new ESLintPlugin({
-      extensions: [".tsx", ".ts", ".js", ".jsx"],
+      extensions: ['.tsx', '.ts', '.js', '.jsx'],
       exclude: [`/node_modules/`, `/bower_components/`],
     }),
     new MiniCssExtractPlugin({
@@ -61,7 +61,22 @@ module.exports = {
     rules: [
       {
         test: /.s?css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: 'css-loader' },
+          {
+            // Loader for webpack to process CSS with PostCSS
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: function () {
+                  return [require('autoprefixer')];
+                },
+              },
+            },
+          },
+          { loader: 'sass-loader' },
+        ],
       },
       {
         test: /\.html$/i,
