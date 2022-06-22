@@ -10,22 +10,22 @@ export default class PageHeader extends Component {
 
         <ul className="nav nav-pills">
           <li className="nav-item">
-            <a href="#" className="nav-link active" aria-current="page">
+            <a href="/" className="nav-link active" aria-current="page">
               Statistic
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <a href="/configs" className="nav-link">
               Configs
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <a href="/admin" className="nav-link">
               Admin
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <a href="/about" className="nav-link">
               About
             </a>
           </li>
