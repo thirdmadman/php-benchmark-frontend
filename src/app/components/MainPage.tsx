@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { IBenchmarkRecord } from '../interfaces/IBenchmarkRecord';
 import { IBenchmarkRecordsByVersion } from '../interfaces/IBenchmarkRecordsByVersion';
 import { BenchmarkRecordService } from '../services/BenchmarkRecordService';
 import BenchmarkRecordCard from './BenchmarkRecordCard';
@@ -9,24 +8,27 @@ import PageHeader from './PageHeader';
 
 export default class MainPage extends Component {
   state = {
-    cards: [
-      {
-        benchmark_version: 0.1,
-        calculation_total: 0,
-        id: '0',
-        ifelse: 0,
-        loops: 0,
-        math: 0,
-        php_version: 0,
-        platform: '0',
-        server_addr: '0',
-        server_name: '0',
-        string: '0',
-        timestamp: '0',
-        total: 0,
-        xdebug: 0,
-      },
-    ] as Array<IBenchmarkRecord>,
+    cards: {
+      array: [
+        {
+          benchmark_version: 0,
+          calculation_total: 0,
+          id: '0',
+          ifelse: 0,
+          loops: 0,
+          math: 0,
+          php_version: 0,
+          platform: '0',
+          server_addr: '0',
+          server_name: '0',
+          string: '0',
+          timestamp: '0',
+          total: 0,
+          xdebug: 0,
+        },
+      ],
+      isLoading: true,
+    },
     rowData: [
       {
         data: [
@@ -91,7 +93,7 @@ export default class MainPage extends Component {
     BenchmarkRecordService.getBenchmarkRecordLast()
       .then((res) => {
         this.setState({
-          cards: res,
+          cards: { array: res, isLoading: false },
         });
       })
       .catch(() => {});
@@ -136,15 +138,23 @@ export default class MainPage extends Component {
   }
 
   render() {
+    const renderCards = () => {
+      if (this.state.cards.isLoading) {
+        return [1, 2, 3].map((el) => (
+          <BenchmarkRecordCard key={el} benchmarkRecord={this.state.cards.array[0]} isLoading={true} />
+        ));
+      } else {
+        return this.state.cards.array.map((card) => (
+          <BenchmarkRecordCard key={card.id} benchmarkRecord={card} isLoading={false} />
+        ));
+      }
+    };
+
     return (
       <div className="container">
         <PageHeader />
         <Graph graphData={this.simpleFilter(this.state.graphData as Array<Plotly.PlotData>)} title={'Bench results'} />
-        <div className="cards-container text-center">
-          {this.state.cards.map((card) => (
-            <BenchmarkRecordCard key={card.id} benchmarkRecord={card} />
-          ))}
-        </div>
+        <div className="cards-container text-center">{renderCards()}</div>
         <PageFooter />
       </div>
     );
