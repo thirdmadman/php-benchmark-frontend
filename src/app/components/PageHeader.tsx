@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { GlobalConstants } from '../../GlobalConstants';
 
 export default class PageHeader extends Component {
   render() {
@@ -10,24 +12,36 @@ export default class PageHeader extends Component {
 
         <ul className="nav nav-pills">
           <li className="nav-item">
-            <a href="/" className="nav-link active" aria-current="page">
+            <NavLink
+              to={GlobalConstants.ROUTE_MAIN}
+              className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+            >
               Statistic
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="/configs" className="nav-link">
+            <NavLink
+              to={GlobalConstants.ROUTE_CONFIGS}
+              className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+            >
               Configs
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="/admin" className="nav-link">
+            <NavLink
+              to={GlobalConstants.ROUTE_ADMIN}
+              className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+            >
               Admin
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="/about" className="nav-link">
+            <NavLink
+              to={GlobalConstants.ROUTE_ABOUT}
+              className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+            >
               About
-            </a>
+            </NavLink>
           </li>
         </ul>
       </header>

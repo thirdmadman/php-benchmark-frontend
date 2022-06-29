@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { GlobalConstants } from '../../GlobalConstants';
 
 export default class PageFooter extends Component {
   render() {
@@ -6,24 +8,36 @@ export default class PageFooter extends Component {
       <footer className="py-3 my-4">
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item">
-            <a href="/" className="nav-link px-2 text-muted">
+            <NavLink
+              to={GlobalConstants.ROUTE_MAIN}
+              className={({ isActive }) => 'nav-link px-2' + (isActive ? ' active' : ' text-muted')}
+            >
               Statistic
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="/configs" className="nav-link px-2 text-muted">
+            <NavLink
+              to={GlobalConstants.ROUTE_CONFIGS}
+              className={({ isActive }) => 'nav-link px-2' + (isActive ? ' active' : ' text-muted')}
+            >
               Configs
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="/admin" className="nav-link px-2 text-muted">
+            <NavLink
+              to={GlobalConstants.ROUTE_ADMIN}
+              className={({ isActive }) => 'nav-link px-2' + (isActive ? ' active' : ' text-muted')}
+            >
               Admin
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="/about" className="nav-link px-2 text-muted">
+            <NavLink
+              to={GlobalConstants.ROUTE_ABOUT}
+              className={({ isActive }) => 'nav-link px-2' + (isActive ? ' active' : ' text-muted')}
+            >
               About
-            </a>
+            </NavLink>
           </li>
         </ul>
         <p className="text-center text-muted">&copy; 2022 thirdmadman</p>
