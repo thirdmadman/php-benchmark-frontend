@@ -52,15 +52,18 @@ export default class MainPage extends Component {
         phpversion: '0.0',
       },
     ] as Array<IBenchmarkRecordsByVersion>,
-    graphData: [
-      {
-        x: [1, 2, 3, 2],
-        y: [2, 6, 3, 6],
-        type: 'scatter',
-        mode: 'lines+markers',
-        marker: { color: 'red' },
-      },
-    ] as Array<Plotly.Data>,
+    graphData: {
+      graphs: [
+        {
+          x: [1, 2, 3, 2],
+          y: [2, 6, 3, 6],
+          type: 'scatter',
+          mode: 'lines+markers',
+          marker: { color: 'red' },
+        },
+      ] as Array<Plotly.Data>,
+      isLoading: true,
+    },
   };
 
   filterFunction = (arrayX: Array<number>) => {
@@ -131,7 +134,7 @@ export default class MainPage extends Component {
         });
 
         this.setState({
-          graphData,
+          graphData: { graphs: graphData, isLoading: false },
         });
       })
       .catch(() => {});
@@ -153,7 +156,11 @@ export default class MainPage extends Component {
     return (
       <div className="container">
         <PageHeader />
-        <Graph graphData={this.simpleFilter(this.state.graphData as Array<Plotly.PlotData>)} title={'Bench results'} />
+        <Graph
+          graphData={this.simpleFilter(this.state.graphData.graphs as Array<Plotly.PlotData>)}
+          isLoading={this.state.graphData.isLoading}
+          title={'Bench results'}
+        />
         <div className="cards-container text-center">{renderCards()}</div>
         <PageFooter />
       </div>
