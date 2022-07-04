@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { IBenchmarkRecordsByVersion } from '../interfaces/IBenchmarkRecordsByVersion';
-import { BenchmarkRecordService } from '../services/BenchmarkRecordService';
-import BenchmarkRecordCard from './BenchmarkRecordCard';
-import Graph from './Graph';
-import PageFooter from './PageFooter';
-import PageHeader from './PageHeader';
+import { IBenchmarkRecordsByVersion } from '../../interfaces/IBenchmarkRecordsByVersion';
+import { BenchmarkRecordService } from '../../services/BenchmarkRecordService';
+import BenchmarkRecordCard from '../BenchmarkRecordCard';
+import Graph from '../Graph';
+import PageFooter from '../PageFooter';
+import PageHeader from '../PageHeader';
 
 export default class MainPage extends Component {
   state = {

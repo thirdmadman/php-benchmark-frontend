@@ -17,7 +17,7 @@ interface GraphProp {
 export default class Graph extends Component<GraphProp> {
   render() {
     return this.props.isLoading ? (
-      <Skeleton width={'100%'} count={15}></Skeleton>
+      <Skeleton width={'100%'} height={'50vh'}></Skeleton>
     ) : (
       <Plot
         data={this.props.graphData}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PageFooter from './PageFooter';
-import PageHeader from './PageHeader';
+import PageFooter from '../PageFooter';
+import PageHeader from '../PageHeader';
 
 export default class ConfigsPage extends Component {
   render() {

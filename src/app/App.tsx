@@ -1,11 +1,11 @@
 import React from 'react';
 import { Component } from 'react';
-import MainPage from './components/MainPage';
+import MainPage from './components/pages/MainPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './scss/style.scss';
-import ConfigsPage from './components/ConfigsPage';
-import AboutPage from './components/AboutPage';
-import AdminPage from './components/AdminPage';
+import ConfigsPage from './components/pages/ConfigsPage';
+import AboutPage from './components/pages/AboutPage';
+import AdminPage from './components/pages/AdminPage';
 import { GlobalConstants } from '../GlobalConstants';
 
 export default class App extends Component {
