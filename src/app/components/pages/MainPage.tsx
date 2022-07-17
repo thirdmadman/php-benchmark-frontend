@@ -5,6 +5,7 @@ import BenchmarkRecordCard from '../BenchmarkRecordCard';
 import Graph from '../Graph';
 import PageFooter from '../PageFooter';
 import PageHeader from '../PageHeader';
+import { PopupsAndBanners } from '../PopupsAndBanners';
 
 export default class MainPage extends Component {
   state = {
@@ -155,12 +156,15 @@ export default class MainPage extends Component {
 
     return (
       <div className="container">
-        <PageHeader />
+        <PageHeader title={'Statistic'} />
+        <PopupsAndBanners />
+        <div className="display-4 my-3 text-center">Graph</div>
         <Graph
           graphData={this.simpleFilter(this.state.graphData.graphs as Array<Plotly.PlotData>)}
           isLoading={this.state.graphData.isLoading}
           title={'Bench results'}
         />
+        <div className="display-4 my-3 text-center">Last results</div>
         <div className="cards-container text-center">{renderCards()}</div>
         <PageFooter />
       </div>
