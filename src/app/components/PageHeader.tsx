@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { GlobalConstants } from '../../GlobalConstants';
 
-export default class PageHeader extends Component {
+interface PageHeaderProps {
+  title: string;
+}
+
+export default class PageHeader extends Component<PageHeaderProps> {
   render() {
     return (
       <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <span className="fs-4">Benchmark results</span>
+          <span className="fs-4">{this.props.title}</span>
         </a>
 
         <ul className="nav nav-pills">
