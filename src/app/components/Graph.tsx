@@ -1,4 +1,3 @@
-import React from 'react';
 import { Component } from 'react';
 import * as Plotly from 'plotly.js-basic-dist';
 import createPlotlyComponent from 'react-plotly.js/factory';
@@ -16,15 +15,12 @@ interface GraphProp {
 
 export default class Graph extends Component<GraphProp> {
   render() {
-    return this.props.isLoading ? (
-      <Skeleton width={'100%'} height={'50vh'}></Skeleton>
+    const { isLoading, graphData, title } = this.props;
+
+    return isLoading ? (
+      <Skeleton width="100%" height="50vh" />
     ) : (
-      <Plot
-        data={this.props.graphData}
-        layout={{ title: this.props.title }}
-        useResizeHandler={true}
-        style={{ width: '100%', height: '100%' }}
-      />
+      <Plot data={graphData} layout={{ title }} useResizeHandler style={{ width: '100%', height: '100%' }} />
     );
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { LocalStorageProvider } from '../services/LocalStorageProvider';
 import AuthPopup from './AuthPopup';
 

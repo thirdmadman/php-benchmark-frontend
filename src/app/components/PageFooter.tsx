@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { GlobalConstants } from '../../GlobalConstants';
 
@@ -10,7 +10,7 @@ export default class PageFooter extends Component {
           <li className="nav-item">
             <NavLink
               to={GlobalConstants.ROUTE_MAIN}
-              className={({ isActive }) => 'nav-link px-2' + (isActive ? ' active' : ' text-muted')}
+              className={({ isActive }) => `nav-link px-2${isActive ? ' active' : ' text-muted'}`}
             >
               Statistic
             </NavLink>
@@ -18,7 +18,7 @@ export default class PageFooter extends Component {
           <li className="nav-item">
             <NavLink
               to={GlobalConstants.ROUTE_CONFIGS}
-              className={({ isActive }) => 'nav-link px-2' + (isActive ? ' active' : ' text-muted')}
+              className={({ isActive }) => `nav-link px-2${isActive ? ' active' : ' text-muted'}`}
             >
               Configs
             </NavLink>
@@ -26,7 +26,7 @@ export default class PageFooter extends Component {
           <li className="nav-item">
             <NavLink
               to={GlobalConstants.ROUTE_ADMIN}
-              className={({ isActive }) => 'nav-link px-2' + (isActive ? ' active' : ' text-muted')}
+              className={({ isActive }) => `nav-link px-2${isActive ? ' active' : ' text-muted'}`}
             >
               Admin
             </NavLink>
@@ -34,7 +34,7 @@ export default class PageFooter extends Component {
           <li className="nav-item">
             <NavLink
               to={GlobalConstants.ROUTE_ABOUT}
-              className={({ isActive }) => 'nav-link px-2' + (isActive ? ' active' : ' text-muted')}
+              className={({ isActive }) => `nav-link px-2${isActive ? ' active' : ' text-muted'}`}
             >
               About
             </NavLink>

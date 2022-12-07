@@ -2,12 +2,13 @@
   "env": {
     "browser": true,
     "es6": true,
+    "es2021": true,
     "jest": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json",
-    "ecmaVersion": 11,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -15,6 +16,7 @@
   },
   "plugins": ["@typescript-eslint", "react", "prettier", "react-hooks", "import"],
   "extends": [
+    "airbnb",
     "airbnb-typescript",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
@@ -30,11 +32,15 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "@typescript-eslint/interface-name-prefix": "off",
+    "import/prefer-default-export": "off",
+    "react/prefer-stateless-function": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-var-reqiures": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "no-console": "off",

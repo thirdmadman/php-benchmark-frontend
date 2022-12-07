@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { LocalStorageProvider } from '../services/LocalStorageProvider';
 
-export default class AuthPopup extends Component {
-  state = {
-    isShown: true,
-    apiKey: '',
-  };
+export type AuthPopupState = {
+  isShown: boolean;
+  apiKey: string;
+};
 
-  hide() {
-    this.setState({ isShown: false });
+// eslint-disable-next-line @typescript-eslint/ban-types
+export default class AuthPopup extends Component<{}, AuthPopupState> {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  constructor(pros: {}) {
+    super(pros);
+    this.state = {
+      isShown: true,
+      apiKey: '',
+    };
   }
 
   handleChange(apiKey: string) {
@@ -17,25 +23,29 @@ export default class AuthPopup extends Component {
 
   handleSubmit(event: React.MouseEvent) {
     const config = LocalStorageProvider.getData();
+    const { apiKey } = this.state;
     if (config) {
-      config.authData = this.state.apiKey;
+      config.authData = apiKey;
       LocalStorageProvider.setData(config);
-      history.go(0);
+      window.history.go(0);
     }
     event.preventDefault();
   }
 
+  // hide() {
+  //   this.setState({ isShown: false });
+  // }
+
   render() {
+    const { apiKey, isShown } = this.state;
     return (
-      <div
-        className={'modal' + (this.state.isShown ? ' fade show' : '')}
-        style={this.state.isShown ? { display: 'block' } : {}}
-      >
+      <div className={`modal${isShown ? ' fade show' : ''}`} style={isShown ? { display: 'block' } : {}}>
+        <div className="modal-backdrop fade show" />
         <div className="modal-dialog" style={{ zIndex: 1055 }}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">You are not signed in.</h5>
-              {/* <button type="button" 
+              {/* <button type="button"
               className="btn-close" aria-label="Close" onClick={() => this.hide()}></button> */}
             </div>
             <div className="modal-body">
@@ -50,15 +60,15 @@ export default class AuthPopup extends Component {
                   placeholder="Your API key here"
                   aria-label="Your API key here"
                   aria-describedby="basic-addon1"
-                  value={this.state.apiKey}
+                  value={apiKey}
                   onChange={(e) => this.handleChange(e.target.value)}
-                ></input>
+                />
               </div>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>
                 Save changes
-                <i className="bi bi-lock"></i>
+                <i className="bi bi-lock" />
               </button>
               {/* <button type="button" className="btn btn-secondary" onClick={() => this.hide()}>
                 Close
@@ -66,7 +76,6 @@ export default class AuthPopup extends Component {
             </div>
           </div>
         </div>
-        <div className="modal-backdrop fade show"></div>
       </div>
     );
   }

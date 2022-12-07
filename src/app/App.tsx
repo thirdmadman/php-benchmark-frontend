@@ -1,7 +1,6 @@
-import React from 'react';
 import { Component } from 'react';
-import MainPage from './components/pages/MainPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import MainPage from './components/pages/MainPage';
 import './scss/style.scss';
 import ConfigsPage from './components/pages/ConfigsPage';
 import AboutPage from './components/pages/AboutPage';
