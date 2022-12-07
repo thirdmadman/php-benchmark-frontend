@@ -1,5 +1,5 @@
 export class GlobalConstants {
-  public static DEFAULT_API_URL = 'http://benchmark-shared-26.smrtp.ru/api.php';
+  public static DEFAULT_API_URL = process.env.DEFAULT_API_URL || '/api.php';
 
   public static ROUTE_MAIN = '/';
 

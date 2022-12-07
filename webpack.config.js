@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -32,6 +33,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
+    new Dotenv(),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
@@ -97,10 +99,12 @@ module.exports = {
     open: true,
     port: 8000,
     hot: true,
-    historyApiFallback: true,
     static: {
-      directory: path.join(__dirname, 'src'),
+      directory: path.join(__dirname, './dist'),
       watch: true,
+    },
+    devMiddleware: {
+      writeToDisk: true,
     },
   },
 };
