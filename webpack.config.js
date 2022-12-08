@@ -46,7 +46,7 @@ module.exports = {
     }),
     new ESLintPlugin({
       extensions: ['.tsx', '.ts', '.js', '.jsx'],
-      exclude: [`/node_modules/`, `/bower_components/`],
+      exclude: ['**/node_modules/**', `/bower_components/`],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].bundle.css',

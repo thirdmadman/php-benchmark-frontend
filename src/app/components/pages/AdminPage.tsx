@@ -7,7 +7,7 @@ export default class AdminPage extends Component {
   render() {
     return (
       <div className="container">
-        <PageHeader title="Admin" />
+        <PageHeader />
         <PopupsAndBanners />
         <div />
         <PageFooter />

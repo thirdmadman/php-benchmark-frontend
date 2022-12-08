@@ -13,7 +13,7 @@ export default class ConfigsPage extends Component {
 
     return (
       <div className="container">
-        <PageHeader title="Configs" />
+        <PageHeader />
         <PopupsAndBanners />
         {LocalStorageProvider.getData()?.authData ? (
           <div>

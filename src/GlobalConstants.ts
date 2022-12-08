@@ -8,4 +8,6 @@ export class GlobalConstants {
   public static ROUTE_CONFIGS = '/configs';
 
   public static ROUTE_ABOUT = '/about';
+
+  public static APP_NAME = 'PHPBenchmark';
 }

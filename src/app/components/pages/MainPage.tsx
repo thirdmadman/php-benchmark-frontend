@@ -179,7 +179,7 @@ export default class MainPage extends Component<{}, MainPageState> {
 
     return (
       <div className="container">
-        <PageHeader title="Statistic" />
+        <PageHeader />
         <PopupsAndBanners />
         <div className="display-4 my-3 text-center">Graph</div>
         <Graph graphData={simpleFilter(graphs as Array<Plotly.PlotData>)} isLoading={isLoading} title="Bench results" />

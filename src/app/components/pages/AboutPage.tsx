@@ -7,7 +7,7 @@ export default class AboutPage extends Component {
   render() {
     return (
       <div className="container">
-        <PageHeader title="About" />
+        <PageHeader />
         <PopupsAndBanners />
         <div />
         <PageFooter />
