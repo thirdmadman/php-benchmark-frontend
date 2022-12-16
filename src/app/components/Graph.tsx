@@ -4,16 +4,11 @@ import createPlotlyComponent from 'react-plotly.js/factory';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import IGraphProp from '../interfaces/IGraphProp';
 
 const Plot = createPlotlyComponent(Plotly);
 
-interface GraphProp {
-  graphData: Array<Plotly.Data>;
-  title: string;
-  isLoading: boolean;
-}
-
-export default class Graph extends Component<GraphProp> {
+export default class Graph extends Component<IGraphProp> {
   render() {
     const { isLoading, graphData, title } = this.props;
 

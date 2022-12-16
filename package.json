@@ -18,6 +18,7 @@
   "license": "ISC",
   "author": "thirdmadman",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
     "plotly.js": "^2.16.3",
@@ -27,6 +28,7 @@
     "react-dom": "^18.2.0",
     "react-loading-skeleton": "^3.1.0",
     "react-plotly.js": "^2.6.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {

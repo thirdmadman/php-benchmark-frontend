@@ -3,16 +3,11 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as Plotly from 'plotly.js-basic-dist';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import { IBenchmarkRecord } from '../interfaces/IBenchmarkRecord';
+import IBenchmarkRecordProp from '../interfaces/IBenchmarkRecordProp';
 
 const Plot = createPlotlyComponent(Plotly);
 
-interface BenchmarkRecordProp {
-  benchmarkRecord: IBenchmarkRecord;
-  isLoading: boolean;
-}
-
-export default class BenchmarkRecordCard extends Component<BenchmarkRecordProp> {
+export default class BenchmarkRecordCard extends Component<IBenchmarkRecordProp> {
   render() {
     const { benchmarkRecord, isLoading } = this.props;
 

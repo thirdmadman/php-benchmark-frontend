@@ -1,41 +1,28 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { LocalStorageProvider } from '../services/LocalStorageProvider';
+import { connect } from 'react-redux';
+import { IAuthPopupState } from '../interfaces/IAuthPopupState';
+import { handleChange, saveData, handleIsShown } from '../redux/auth-popup/authPopupSlice';
+import { RootState } from '../redux/store';
 
-export type AuthPopupState = {
-  isShown: boolean;
-  apiKey: string;
-};
+interface DispatchProps {
+  saveDataAction: typeof saveData;
+  handleChangeAction: typeof handleChange;
+  handleIsShownAction: typeof handleIsShown;
+}
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export default class AuthPopup extends Component<{}, AuthPopupState> {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  constructor(pros: {}) {
-    super(pros);
-    this.state = {
-      isShown: true,
-      apiKey: '',
-    };
-  }
-
-  handleChange(apiKey: string) {
-    this.setState({ apiKey });
-  }
-
+type Props = IAuthPopupState & DispatchProps;
+class AuthPopup extends Component<Props> {
   handleSubmit(event: React.MouseEvent) {
-    const config = LocalStorageProvider.getData();
-    const { apiKey } = this.state;
-    if (config) {
-      config.authData = apiKey;
-      LocalStorageProvider.setData(config);
-      window.history.go(0);
-    }
+    const { saveDataAction } = this.props;
+    saveDataAction();
     event.preventDefault();
   }
 
   render() {
-    const { apiKey, isShown } = this.state;
+    const { apiKey, isShown, handleChangeAction, handleIsShownAction } = this.props;
+    handleIsShownAction();
     return (
       <Modal show={isShown} backdrop="static" keyboard={false}>
         <Modal.Header>
@@ -54,7 +41,7 @@ export default class AuthPopup extends Component<{}, AuthPopupState> {
               aria-label="Your API key here"
               aria-describedby="basic-addon1"
               value={apiKey}
-              onChange={(e) => this.handleChange(e.target.value)}
+              onChange={(e) => handleChangeAction(e.target.value)}
             />
           </div>
         </Modal.Body>
@@ -67,3 +54,15 @@ export default class AuthPopup extends Component<{}, AuthPopupState> {
     );
   }
 }
+
+const mapStateToProps = (state: RootState) => ({
+  ...state.authPopup,
+});
+
+const mapDispatchToProps = {
+  saveDataAction: saveData,
+  handleChangeAction: handleChange,
+  handleIsShownAction: handleIsShown,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthPopup);
