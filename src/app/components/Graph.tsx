@@ -15,7 +15,12 @@ export default class Graph extends Component<IGraphProp> {
     return isLoading ? (
       <Skeleton width="100%" height="50vh" />
     ) : (
-      <Plot data={graphData} layout={{ title }} useResizeHandler style={{ width: '100%', height: '100%' }} />
+      <Plot
+        data={graphData}
+        layout={{ title, legend: { orientation: 'h' } }}
+        useResizeHandler
+        style={{ width: '100%', height: '100%' }}
+      />
     );
   }
 }
