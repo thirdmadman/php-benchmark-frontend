@@ -42,6 +42,11 @@ module.exports = {
           to: path.resolve(__dirname, 'dist/static/'),
           noErrorOnMissing: true,
         },
+        {
+          from: path.resolve(__dirname, 'src/.htaccess'),
+          to: path.resolve(__dirname, 'dist/'),
+          noErrorOnMissing: true,
+        },
       ],
     }),
     new ESLintPlugin({
