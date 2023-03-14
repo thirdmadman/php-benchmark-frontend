@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import IMainPageState from '../../interfaces/IMainPageState';
 import { BenchmarkRecordService } from '../../services/BenchmarkRecordService';
+import { LocalStorageProvider } from '../../services/LocalStorageProvider';
 import type { RootState } from '../store';
 
 const initialState: IMainPageState = {
@@ -40,7 +41,11 @@ const initialState: IMainPageState = {
 };
 
 export const loadGraphData = createAsyncThunk('mainPage/loadGraphData', async () => {
-  let cardsArray = await BenchmarkRecordService.getBenchmarkRecordLast()
+  if (!LocalStorageProvider.getData()?.authData) {
+    return null;
+  }
+
+  const cardsArray = await BenchmarkRecordService.getBenchmarkRecordLast()
     .then((res) => res)
     .catch(() => {});
 
@@ -50,7 +55,7 @@ export const loadGraphData = createAsyncThunk('mainPage/loadGraphData', async ()
       data.map((phpVersion) => BenchmarkRecordService.getBenchmarkRecordsByPhpVersion(phpVersion, 500)),
     );
 
-  let loadedGraphData = await BenchmarkRecordService.getCurrentPhpVersions()
+  const loadedGraphData = await BenchmarkRecordService.getCurrentPhpVersions()
     .then(getAllPhpRawData)
     .then((recordsByVersion) => {
       const rowData = recordsByVersion.map((recordByVersion) => {
@@ -83,8 +88,7 @@ export const loadGraphData = createAsyncThunk('mainPage/loadGraphData', async ()
     })
     .catch(() => {});
   if (!cardsArray || !loadedGraphData) {
-    cardsArray = initialState.cards.array;
-    loadedGraphData = initialState.graphData.graphs;
+    return null;
   }
 
   return { cardsArray, loadedGraphData };
@@ -98,10 +102,10 @@ export const mainPageSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(loadGraphData.fulfilled, (state, action) => {
-      if (action.payload.cardsArray) {
+      if (action.payload?.cardsArray) {
         state.cards = { array: action.payload.cardsArray, isLoading: false };
       }
-      if (action.payload.loadedGraphData) {
+      if (action.payload?.loadedGraphData) {
         state.graphData = { graphs: action.payload.loadedGraphData, isLoading: false };
       }
     });
