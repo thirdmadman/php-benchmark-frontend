@@ -41,6 +41,7 @@ class MainPage extends Component<Props, IMainPageState> {
       if (isLoadingCard && array) {
         return [1, 2, 3].map((el) => <BenchmarkRecordCard key={el} benchmarkRecord={array[0]} isLoading />);
       }
+
       return array.map((card) => <BenchmarkRecordCard key={card.id} benchmarkRecord={card} isLoading={false} />);
     };
 
