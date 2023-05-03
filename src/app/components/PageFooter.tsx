@@ -40,7 +40,7 @@ export default class PageFooter extends Component {
             </NavLink>
           </li>
         </ul>
-        <p className="text-center text-muted">&copy; 2022 thirdmadman</p>
+        <p className="text-center text-muted">thirdmadman</p>
       </footer>
     );
   }
